@@ -50,7 +50,6 @@ import org.apache.rya.pcj.fluo.test.base.RyaExportITBase;
 import org.apache.rya.periodic.notification.api.NodeBin;
 import org.eclipse.rdf4j.model.Statement;
 import org.eclipse.rdf4j.model.ValueFactory;
-import org.eclipse.rdf4j.model.impl.LiteralImpl;
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory;
 import org.eclipse.rdf4j.model.vocabulary.XMLSchema;
 import org.eclipse.rdf4j.query.BindingSet;
@@ -244,8 +243,9 @@ public class PeriodicNotificationBinPrunerIT extends RyaExportITBase {
     }
     
     private void compareFluoCounts(FluoClient client, String pcjId, long bin) {
+        final ValueFactory vf = SimpleValueFactory.getInstance();
         QueryBindingSet bs = new QueryBindingSet();
-        bs.addBinding(IncrementalUpdateConstants.PERIODIC_BIN_ID, new LiteralImpl(Long.toString(bin), XMLSchema.LONG));
+        bs.addBinding(IncrementalUpdateConstants.PERIODIC_BIN_ID, vf.createLiteral(Long.toString(bin), XMLSchema.LONG));
         
         VariableOrder varOrder = new VariableOrder(IncrementalUpdateConstants.PERIODIC_BIN_ID);
         
