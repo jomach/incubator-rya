@@ -46,7 +46,7 @@ import com.google.common.collect.Sets;
 public class AccumuloDeletePCJIT extends FluoITBase {
 
     @Test
-    public void deletePCJ() throws RyaClientException, PCJStorageException, RepositoryException {
+    public void deletePCJ() throws InstanceDoesNotExistException, RyaClientException, PCJStorageException, RepositoryException {
         // Initialize the commands that will be used by this test.
         final CreatePCJ createPCJ = new AccumuloCreatePCJ(createConnectionDetails(), accumuloConn);
 
@@ -110,14 +110,14 @@ public class AccumuloDeletePCJIT extends FluoITBase {
     }
 
     @Test(expected = InstanceDoesNotExistException.class)
-    public void deletePCJ_instanceDoesNotExist() throws RyaClientException {
+    public void deletePCJ_instanceDoesNotExist() throws InstanceDoesNotExistException, RyaClientException {
         // Delete a PCJ for a Rya instance that doesn't exist.
         final DeletePCJ deletePCJ = new AccumuloDeletePCJ(createConnectionDetails(), accumuloConn);
         deletePCJ.deletePCJ("doesNotExist", "randomID");
     }
 
     @Test(expected = RyaClientException.class)
-    public void deletePCJ_pcjDoesNotExist() throws RyaClientException {
+    public void deletePCJ_pcjDoesNotExist() throws InstanceDoesNotExistException, RyaClientException {
         // Delete the PCJ.
         final DeletePCJ deletePCJ = new AccumuloDeletePCJ(createConnectionDetails(), accumuloConn);
         deletePCJ.deletePCJ(getRyaInstanceName(), "randomID");

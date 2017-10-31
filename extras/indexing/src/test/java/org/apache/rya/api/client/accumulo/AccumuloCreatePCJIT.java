@@ -26,6 +26,7 @@ import java.util.Set;
 
 import org.apache.rya.api.client.CreatePCJ;
 import org.apache.rya.api.client.Install;
+import org.apache.rya.api.client.Install.DuplicateInstanceNameException;
 import org.apache.rya.api.client.Install.InstallConfiguration;
 import org.apache.rya.api.client.InstanceDoesNotExistException;
 import org.apache.rya.api.client.RyaClientException;
@@ -115,14 +116,14 @@ public class AccumuloCreatePCJIT extends FluoITBase {
     }
 
     @Test(expected = InstanceDoesNotExistException.class)
-    public void createPCJ_instanceDoesNotExist() throws RyaClientException {
+    public void createPCJ_instanceDoesNotExist() throws InstanceDoesNotExistException, RyaClientException {
         // Create a PCJ for a Rya instance that doesn't exist.
         final CreatePCJ createPCJ = new AccumuloCreatePCJ(createConnectionDetails(), accumuloConn);
         createPCJ.createPCJ("invalidInstanceName", "SELECT * where { ?a ?b ?c }");
     }
 
     @Test(expected = RyaClientException.class)
-    public void createPCJ_invalidSparql() throws RyaClientException {
+    public void createPCJ_invalidSparql() throws DuplicateInstanceNameException, RyaClientException {
         // Install an instance of Rya.
         final InstallConfiguration installConfig = InstallConfiguration.builder()
                 .setEnableTableHashPrefix(true)
