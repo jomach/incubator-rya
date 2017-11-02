@@ -58,7 +58,7 @@ import com.google.common.base.Preconditions;
 public class ConstructProjection {
 
     private static final Logger log = Logger.getLogger(ConstructProjection.class);
-    private static final ValueFactory vf = SimpleValueFactory.getInstance();
+    private static final ValueFactory VF = SimpleValueFactory.getInstance();
     private String subjName;
     private String predName;
     private String objName;
@@ -83,7 +83,7 @@ public class ConstructProjection {
         this.predVar = predicateVar;
         this.objVar = objectVar;
         if ((subjVar.isAnonymous() || VarNameUtils.isAnonymous(subjName)) && subjectVar.getValue() == null) {
-            subjValue = Optional.of(vf.createBNode());
+            subjValue = Optional.of(VF.createBNode());
         } else {
             subjValue = Optional.ofNullable(subjectVar.getValue());
         }
