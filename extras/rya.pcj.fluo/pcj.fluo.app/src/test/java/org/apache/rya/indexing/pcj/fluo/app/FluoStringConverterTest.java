@@ -69,9 +69,9 @@ public class FluoStringConverterTest {
 
         // Enusre it converted to the expected result.
         final Var subject = new Var("x");
-        final Var predicate = new Var(prependConstant("http://worksAt"), VF.createIRI(XMLSchema.ANYURI.toString(),"http://worksAt"));
+        final Var predicate = new Var(prependConstant("http://worksAt"), VF.createIRI("http://worksAt"));
         predicate.setConstant(true);
-        final Var object = new Var(prependConstant("http://Chipotle"), VF.createIRI(XMLSchema.ANYURI.toString(),"http://Chipotle"));
+        final Var object = new Var(prependConstant("http://Chipotle"), VF.createIRI("http://Chipotle"));
         object.setConstant(true);
         final StatementPattern expected = new StatementPattern(subject, predicate, object);
 
@@ -87,7 +87,7 @@ public class FluoStringConverterTest {
         final Var var = FluoStringConverter.toVar(varString);
 
         // Ensure it converted to the expected result.
-        final Var expected = new Var(prependConstant("http://Chipotle"), VF.createIRI(XMLSchema.ANYURI.toString(),"http://Chipotle"));
+        final Var expected = new Var(prependConstant("http://Chipotle"), VF.createIRI("http://Chipotle"));
         expected.setConstant(true);
 
         assertEquals(expected, var);

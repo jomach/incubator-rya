@@ -37,7 +37,6 @@ import org.eclipse.rdf4j.query.algebra.evaluation.QueryBindingSet;
 import org.eclipse.rdf4j.query.algebra.helpers.StatementPatternCollector;
 import org.eclipse.rdf4j.query.parser.ParsedQuery;
 import org.eclipse.rdf4j.query.parser.sparql.SPARQLParser;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.google.common.collect.Sets;
@@ -111,7 +110,6 @@ public class ConstructGraphTest {
     
     
     @Test
-    @Ignore
     public void testConstructGraphSerializer() throws MalformedQueryException {
         
         String query = "select ?x where { ?x <uri:talksTo> <uri:Bob>. ?y <uri:worksAt> ?z }";
@@ -129,7 +127,6 @@ public class ConstructGraphTest {
     }
     
     @Test
-    @Ignore
     public void testConstructGraphSerializerBlankNode() throws MalformedQueryException {
         
         String query = "select ?x where { _:b <uri:talksTo> ?x. _:b <uri:worksAt> ?y }";
